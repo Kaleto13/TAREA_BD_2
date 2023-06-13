@@ -83,8 +83,6 @@ app.delete('/personaje_habita_reino/:id', Personaje_habita_reinoController.delet
 // Defensas_reinos endpoints
 app.get('/defensas_reinos', Defensas_reinosController.getAllReinoDefensas);
 app.get('/defensas_reinos/:id', Defensas_reinosController.getReinoDefensaById);
-app.put('/defensas_reinos/:id', Defensas_reinosController.updateReinoDefensa);
-app.delete('/defensas_reinos/:id', Defensas_reinosController.deleteReinoDefensa);
 
 
 
