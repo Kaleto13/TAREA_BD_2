@@ -9,7 +9,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgresql://postgres:papelucho1@localhost:5432/MARIO"
 }
 
 model User {
@@ -42,7 +42,7 @@ model Post {
 
 model Karts{
   id  Int   @id @default(autoincrement())
-  modelo  Int
+  modelo  String
   color   String
   velocidad_maxima Int
   conductor Personaje  @relation(fields: [id_personaje], references: [id])

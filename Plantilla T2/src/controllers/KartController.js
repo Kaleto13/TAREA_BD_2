@@ -5,13 +5,13 @@ import prisma from '../prismaClient.js'
 const getAllKarts = async (req, res) => {
     try{
         const karts = await prisma.Karts.findMany();
-      if (personajes.length === 0) {
+      if (karts.length === 0) {
             
             return res.status(404).json({ message: 'Ningun kart encontrado.' });
           }
-        res.json(personajes);
+        res.json(karts);
     } catch (error) {
-        console.error(`Falla de sacar karts:`, error);
+        console.error(`Falla de sacar karts(consola):`, error);
         res.status(500).json({error: `Falla de sacar karts`});
     }
 };
@@ -34,13 +34,12 @@ const getAllKarts = async (req, res) => {
 
 const createKart = async (req, res) => {
     try{
-        const {modelo, color, velocidad_maxima, conductor, id_personaje} = req.body
+        const {modelo, color, velocidad_maxima, id_personaje} = req.body
         const kart = await prisma.Karts.create({
             data: {
                 modelo,
                 color   ,
                 velocidad_maxima ,
-                conductor  ,
                 id_personaje,
             }
         })
@@ -55,7 +54,7 @@ const createKart = async (req, res) => {
 const updateKart = async(req,res) => {
     try {
         const { id } = req.params
-        const {modelo, color, velocidad_maxima, conductor, id_personaje} = req.body
+        const {modelo, color, velocidad_maxima, id_personaje} = req.body
 
         const existingKart = await prisma.Karts.findUnique({
             where: {
@@ -75,7 +74,6 @@ const updateKart = async(req,res) => {
                 modelo,
                 color   ,
                 velocidad_maxima ,
-                conductor  ,
                 id_personaje,
             }
         })
@@ -94,7 +92,7 @@ const deleteKart = async (req, res) => {
         const { id } = req.params
         const {modelo, color, velocidad_maxima, conductor, id_personaje} = req.body
 
-        const existingKart = await prisma.personajes.findUnique({
+        const existingKart = await prisma.Karts.findUnique({
             where: {
                 id: Number(id),
             }

@@ -34,12 +34,14 @@ const getOcupationById = async (req, res) => {
 const createOcupation = async (req, res) => {
     try{
         const {id_trabajo, id_personaje, fecha_inicio, fecha_termino} = req.body
+        const inicio = new Date(fecha_inicio);
+        const termino = new Date(fecha_termino);
         const relacion = await prisma.personaje_tiene_trabajo.create({
             data: {
                 id_trabajo,
                 id_personaje,
-                fecha_inicio,
-                fecha_termino
+                fecha_inicio:inicio,
+                fecha_termino:termino
             }
         })
         res.json(relacion)

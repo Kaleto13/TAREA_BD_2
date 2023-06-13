@@ -13,7 +13,7 @@ import morgan from 'morgan';
 
 const ENV = process.env;
 const app = express();
-
+const port = 3000;
 //middleware
 app.use(express.json());
 app.use(morgan('dev'));
@@ -106,6 +106,6 @@ app.use((_, res) => {
 
 
 //Init server
-app.listen(ENV.API_PORT, () => {
-    console.log(`Server running on port ${ENV.API_PORT}`);
-})
+app.listen(port, () => {
+    console.log('Servidor escuchando en el puerto ${port}');
+  });

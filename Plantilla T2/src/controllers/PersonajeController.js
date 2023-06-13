@@ -35,11 +35,12 @@ const getAllPersonajes = async (req, res) => {
 const createPersonaje = async (req, res) => {
     try{
         const {nombre, fuerza, fecha_nacimiento, objeto} = req.body
+        const Nacimiento = new Date(fecha_nacimiento);
         const personaje = await prisma.Personaje.create({
             data: {
                 nombre,
                 fuerza,
-                fecha_nacimiento,
+                fecha_nacimiento:Nacimiento,
                 objeto
             }
         })
